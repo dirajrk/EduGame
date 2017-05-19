@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }
 
         else if(view.getId()==R.id.settingBtn){
-            //Setting button
+            //Settings button
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

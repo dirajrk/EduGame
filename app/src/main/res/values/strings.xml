@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Fill in the blank!</string>
-    <string name="help_info">Fill in the blank! is an arithmetic game.\n\nChoose Easy, Medium or Hard level in the settings menu.\n\nAnswer the question by typing on the number pad displayed and pressing enter. Press "C" to erase your mistakes. Each question may be from addition, subtraction, multiplication or division.\n\nEach correct answer scores you one point and each incorrect answer deducts one point.\n\nYour ten best scores will automatically be saved into Scores.\n\nApp by Diraj Ravikumar</string>
+    <string name="help_info">Fill in the blank! is an arithmetic game.\n\nChoose Easy, Medium or Hard level in the settings menu.\n\nAnswer the question by typing on the number pad displayed and pressing enter. Press "C" to erase your mistakes. Each question may be from addition, subtraction, multiplication or division.\n\nEach correct answer scores you one point and each incorrect answer deducts one point.\n\nYour ten best scores will automatically be saved into Scores. Twitter app is required to share scores online and to share your scores, shake your phone.\n\nApp by Diraj Ravikumar</string>
+    <string name="permission_request">Permission Required</string>
+    <string name="storage_permission">To share the score, allow EduGame to access your storage so that we can store the image</string>
+    <string name="continue_settings">Continue</string>
+    <string name="not_now">Not now</string>
+    <string name="download_link">\nhttps://download-my-app</string>
+    <string name="beat_my_score">Can you beat my score in Fill the Blanks?\nMy Highscore:</string>
 </resources>

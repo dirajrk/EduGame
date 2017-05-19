@@ -9,6 +9,7 @@ public class HelpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Loads the activity_help.xml content and guides the user on how the app works
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
     }
