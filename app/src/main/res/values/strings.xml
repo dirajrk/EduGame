@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Fill in the blank!</string>
+    <string name="help_info">Fill in the blank! is an arithmetic game.\n\nChoose Easy, Medium or Hard level in the settings menu.\n\nAnswer the question by typing on the number pad displayed and pressing enter. Press "C" to erase your mistakes. Each question may be from addition, subtraction, multiplication or division.\n\nEach correct answer scores you one point and each incorrect answer deducts one point.\n\nYour ten best scores will automatically be saved into Scores.\n\nApp by Diraj Ravikumar</string>
+</resources>
