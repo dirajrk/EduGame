@@ -2,6 +2,7 @@ package rk.diraj.edugame;
 
 // CP3406 Assignment 2 by Diraj Ravikumar (13255244)
 
+import android.media.MediaPlayer;
 import android.app.Activity;
 import java.util.Random;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 public class PlayActivity extends Activity implements OnClickListener {
     // Behind the scenes on how the game works
+    MediaPlayer mediaPlayer;
 
     private int level = 0, answer = 0, operator = 0, operand1 = 0, operand2 = 0;
 
@@ -46,6 +48,11 @@ public class PlayActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_play);
+
+        // Song to play
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.play_theme);
+        // Start the song
+        mediaPlayer.start();
 
         // Settings where user can change difficulty level
         gamePrefs = getSharedPreferences(GAME_PREFS, 0);
@@ -245,10 +252,28 @@ public class PlayActivity extends Activity implements OnClickListener {
         }
     }
 
+    @Override
+    public void onPause() {
+        // Pauses the song
+        super.onPause();
+        if(mediaPlayer.isPlaying())
+            mediaPlayer.pause();
+    }
+
+    @Override
+    public void onResume() {
+        // Resumes the song
+        super.onResume();
+        if (!mediaPlayer.isPlaying())
+            mediaPlayer.start();
+    }
+
     protected void onDestroy(){
         // Save the current score
         setHighScore();
         super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
     @Override
@@ -259,4 +284,5 @@ public class PlayActivity extends Activity implements OnClickListener {
         savedInstanceState.putInt("level", level);
         super.onSaveInstanceState(savedInstanceState);
     }
+
 }

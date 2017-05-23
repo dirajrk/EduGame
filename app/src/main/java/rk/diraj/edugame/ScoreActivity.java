@@ -3,6 +3,7 @@ package rk.diraj.edugame;
 // CP3406 Assignment 2 by Diraj Ravikumar (13255244)
 
 import android.Manifest;
+import android.media.MediaPlayer;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
@@ -37,11 +38,17 @@ public class ScoreActivity extends Activity {
     private Sensor mAccelerometer;
     private AccelerometerUtil mAccelerometerUtil;
     Context context;
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
+
+        // Song to play
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_theme);
+        // Start the song
+        mediaPlayer.start();
 
         // High score related data that uses Score.java
         TextView scoreView = (TextView)findViewById(R.id.high_scores_list);
@@ -76,12 +83,16 @@ public class ScoreActivity extends Activity {
         super.onResume();
         // Add the following line to register the Session Manager Listener onResume
         mSensorManager.registerListener(mAccelerometerUtil, mAccelerometer,	SensorManager.SENSOR_DELAY_UI);
+        if (!mediaPlayer.isPlaying())
+            mediaPlayer.start();
     }
 
     @Override
     public void onPause() {
         // Add the following line to unregister the Sensor Manager onPause
         mSensorManager.unregisterListener(mAccelerometerUtil);
+        if(mediaPlayer.isPlaying())
+            mediaPlayer.pause();
         super.onPause();
     }
 
@@ -155,5 +166,13 @@ public class ScoreActivity extends Activity {
         } catch (final ActivityNotFoundException e) {
             Toast.makeText(this, "You don't seem to have Twitter installed on this device", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        // Stops the song
+        super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 }

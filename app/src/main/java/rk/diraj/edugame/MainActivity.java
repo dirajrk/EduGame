@@ -24,17 +24,19 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         // Hides the action bar
         getSupportActionBar().hide();
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Song to play
         mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_theme);
+        // Start the song
         mediaPlayer.start();
+        // Buttons
         playBtn = (Button) findViewById(R.id.playBtn);
         settingBtn = (Button) findViewById(R.id.settingBtn);
         helpBtn = (Button) findViewById(R.id.helpBtn);
         scoreBtn = (Button) findViewById(R.id.scoreBtn);
-
+        // Button OnClickListener
         playBtn.setOnClickListener(this);
         settingBtn.setOnClickListener(this);
         helpBtn.setOnClickListener(this);
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }
 
         else if(view.getId()==R.id.settingBtn){
-            //Settings button
+            //Settings button launches an Alert Dialog which presents difficulty options
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -69,13 +71,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }
 
         else if(view.getId()==R.id.helpBtn){
-            //How To button
+            //How To button launches Help Activity
 
             Intent helpIntent = new Intent(this, HelpActivity.class);
             this.startActivity(helpIntent);
         }
         else if(view.getId()==R.id.scoreBtn){
-            //Scores button
+            //Scores button launches Scores Activity
 
             Intent scoreIntent = new Intent(this, ScoreActivity.class);
             this.startActivity(scoreIntent);
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
 
     @Override
     public void onPause() {
+        // Pauses the song
         super.onPause();
         if(mediaPlayer.isPlaying())
             mediaPlayer.pause();
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
 
     @Override
     public void onResume() {
+        // Resumes the song
         super.onResume();
         if (!mediaPlayer.isPlaying())
             mediaPlayer.start();
@@ -105,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
 
     @Override
     public void onDestroy() {
+        // Stops the song
         super.onDestroy();
         mediaPlayer.stop();
         mediaPlayer.release();
