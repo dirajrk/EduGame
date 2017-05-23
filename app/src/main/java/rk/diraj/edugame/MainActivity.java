@@ -2,6 +2,7 @@ package rk.diraj.edugame;
 
 // CP3406 Assignment 2 by Diraj Ravikumar (13255244)
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener{
 
+    MediaPlayer mediaPlayer;
     private Button playBtn, settingBtn, helpBtn, scoreBtn;
     private String[] levelNames = {"Easy", "Medium", "Hard"};
 
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.menu_theme);
+        mediaPlayer.start();
         playBtn = (Button) findViewById(R.id.playBtn);
         settingBtn = (Button) findViewById(R.id.settingBtn);
         helpBtn = (Button) findViewById(R.id.helpBtn);
@@ -83,6 +87,27 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         Intent playIntent = new Intent(this, PlayActivity.class);
         playIntent.putExtra("level", chosenLevel);
         this.startActivity(playIntent);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(mediaPlayer.isPlaying())
+            mediaPlayer.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!mediaPlayer.isPlaying())
+            mediaPlayer.start();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
 
 }
